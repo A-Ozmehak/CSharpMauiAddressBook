@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAddressBook.Pages.ContactListPage"
+             
+             xmlns:viewmodels="clr-namespace:MauiAddressBook.ViewModels"
+             xmlns:models="clr-namespace:Shared.Models;assembly=Shared"
+             x:DataType="{x:Type viewmodels:ContactAddViewModel}"
+             
+             Title="ContactListPage">
+
+    <ScrollView>
+
+        <Grid ColumnDefinitions="auto, *" Margin="20">
+            <Label 
+                 Text="Contact List"
+                 VerticalOptions="Center" 
+                 HorizontalOptions="Center" />
+            <CollectionView Grid.Column="0" ItemsSource="{Binding ContactList}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type models:AddressBookContact}">
+                        <VerticalStackLayout >
+                            <Label Text="{Binding FirstName}" />
+                            <Label Text="{Binding LastName}" />
+                            <Label Text="{Binding Email}" />
+                            <Label Text="{Binding PhoneNumber}" />
+                            <Label Text="{Binding Address}" />
+                            <Label Text="{Binding ZipCode}" />
+                            <Label Text="{Binding City}" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+    </ScrollView>
+</ContentPage>
