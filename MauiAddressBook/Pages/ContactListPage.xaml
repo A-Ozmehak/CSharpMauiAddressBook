@@ -7,15 +7,12 @@
              xmlns:models="clr-namespace:Shared.Models;assembly=Shared"
              x:DataType="{x:Type viewmodels:ContactAddViewModel}"
              
-             Title="ContactListPage">
+             Title="Contact List">
 
     <ScrollView>
 
         <Grid ColumnDefinitions="auto, *" Margin="20">
-            <Label 
-                 Text="Contact List"
-                 VerticalOptions="Center" 
-                 HorizontalOptions="Center" />
+          
             <CollectionView Grid.Column="0" ItemsSource="{Binding ContactList}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="{x:Type models:AddressBookContact}">

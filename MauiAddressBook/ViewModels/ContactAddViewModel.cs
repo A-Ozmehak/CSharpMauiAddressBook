@@ -14,6 +14,11 @@ namespace MauiAddressBook.ViewModels
         {
             _contactService = contactService;
             UpdateContactList();
+
+            foreach (AddressBookContact contact in _contactService.GetContacts())
+            {
+                ContactList.Add(contact);
+            }
         }
 
         [ObservableProperty]
