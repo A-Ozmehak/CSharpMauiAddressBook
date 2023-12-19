@@ -17,6 +17,8 @@ public class ContactService
     public List<AddressBookContact> Contacts { get; private set; } = [];
     private readonly string _filePath = @"C:\Users\Anna\Documents\CSharpRepo\CSharpMauiAddressBook\addressBookContacts.json";
 
+    public event EventHandler? ContactUpdated;
+
     public bool AddContactToList(AddressBookContact contact)
     {
         //if (!string.IsNullOrWhiteSpace(contact.FirstName))
@@ -35,6 +37,8 @@ public class ContactService
             string json = JsonConvert.SerializeObject(Contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
             //var result = 
             _fileService.SaveContactToFile(_filePath, json);
+            ContactUpdated?.Invoke(this, new EventArgs());
+
             return true;
             //}
         }
@@ -79,8 +83,9 @@ public class ContactService
 
                 string json = JsonConvert.SerializeObject(Contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
                 _fileService.SaveContactToFile(_filePath, json);
-                return true;
+                ContactUpdated?.Invoke(this, new EventArgs());
 
+                return true;
             }
             else
             {
@@ -103,5 +108,19 @@ public class ContactService
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
         return null!;
+    }
+
+    public void Update(AddressBookContact contact)
+    {
+        var addressBookItem = Contacts.FirstOrDefault(i => i.FullName == contact.FullName);
+        if (addressBookItem != null)
+        {
+            addressBookItem = contact;
+
+            string json = JsonConvert.SerializeObject(Contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
+            _fileService.SaveContactToFile(_filePath, json);
+
+            ContactUpdated?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

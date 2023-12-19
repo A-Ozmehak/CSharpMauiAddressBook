@@ -9,4 +9,20 @@ public class AddressBookContact
     public string Address { get; set; } = null!;
     public string City { get; set; } = null!;
     public string ZipCode { get; set; } = null!;
+
+    public string FullName
+    {
+        get
+        {
+            return $"{FirstName} {LastName}";
+        }
+    }
+
+    public string FullAddress
+    {
+        get
+        {
+            return $"{Address} {ZipCode} {City}";
+        }
+    }
 }

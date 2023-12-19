@@ -5,26 +5,34 @@
              
              xmlns:viewmodels="clr-namespace:MauiAddressBook.ViewModels"
              xmlns:models="clr-namespace:Shared.Models;assembly=Shared"
-             x:DataType="{x:Type viewmodels:ContactAddViewModel}"
+             x:DataType="{x:Type viewmodels:ContactListViewModel}"
              
              Title="Contact List">
 
     <ScrollView>
 
-        <Grid ColumnDefinitions="auto, *" Margin="20">
-          
-            <CollectionView Grid.Column="0" ItemsSource="{Binding ContactList}">
+        <Grid RowDefinitions="auto, *" Margin="20">
+            <Button Grid.Row="0" Text="Add Contact" Command="{Binding NavigateToAddCommand}" />
+            <CollectionView Grid.Row="1" ItemsSource="{Binding ContactList}">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="{x:Type models:AddressBookContact}">
-                        <VerticalStackLayout >
-                            <Label Text="{Binding FirstName}" />
-                            <Label Text="{Binding LastName}" />
-                            <Label Text="{Binding Email}" />
-                            <Label Text="{Binding PhoneNumber}" />
-                            <Label Text="{Binding Address}" />
-                            <Label Text="{Binding ZipCode}" />
-                            <Label Text="{Binding City}" />
-                        </VerticalStackLayout>
+                    <DataTemplate x:DataType="models:AddressBookContact">
+                        <Grid ColumnDefinitions="*, auto">
+                            <VerticalStackLayout Grid.Column="0" Margin="10">
+                                <Label Text="{Binding FullName, StringFormat='Name: {0}'}" />
+                                <Label Text="{Binding Email, StringFormat='Email: {0}'}" />
+                                <Label Text="{Binding PhoneNumber, StringFormat='Phone number: {0}'}" />
+                                <Label Text="{Binding FullAddress, StringFormat='Address: {0}'}" />
+                            </VerticalStackLayout>
+                            
+                            <HorizontalStackLayout Grid.Column="1">
+                                <!--<Button Text="X" CommandParameter="{Binding .}" Command="{Binding RemoveContactCommand}"  Margin="10" />-->
+                                <Button Text="X" CommandParameter="{Binding .}" Command="{Binding Path=BindingContext.RemoveContactCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"  Margin="10" />
+
+                                <!--<Button Text="Edit" CommandParameter="{Binding .}" Command="{Binding NavigateToEditCommand}"  Margin="10" />-->
+                                <Button Text="Edit" CommandParameter="{Binding .}" Command="{Binding Path=BindingContext.NavigateToEditCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"  Margin="10" />
+
+                            </HorizontalStackLayout>
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

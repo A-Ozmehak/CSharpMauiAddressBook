@@ -40,7 +40,7 @@
 
                 <Button Text="Add to List" Command="{Binding AddContactCommand}" />
 
-                <Button Text="Contact List" Command="{Binding NavigateToListCommand}" />
+                <!--<Button Text="Contact List" Command="{Binding NavigateToListCommand}" />-->
             </VerticalStackLayout>
         </Grid>
     </ScrollView>

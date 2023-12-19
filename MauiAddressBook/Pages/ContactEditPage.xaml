@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             
+             xmlns:viewmodels="clr-namespace:MauiAddressBook.ViewModels"
+             xmlns:models="clr-namespace:Shared.Models;assembly=Shared"
+             x:DataType="{x:Type viewmodels:ContactEditViewModel}"
+             
+             x:Class="MauiAddressBook.Pages.ContactEditPage"
+             Title="Edit Contact">
+
+
+    <VerticalStackLayout Margin="20">
+        <Label Text="Firstname: " />
+        <Entry Text="{Binding Contact.FirstName}" />
+
+        <Label Text="Firstname: " />
+        <Entry Text="{Binding Contact.LastName}" />
+
+        <Label Text="Firstname: " />
+        <Entry Text="{Binding Contact.Email}" />
+
+        <Label Text="Firstname: " />
+        <Entry Text="{Binding Contact.PhoneNumber}" />
+
+        <Label Text="Firstname: " />
+        <Entry Text="{Binding Contact.Address}" />
+
+        <Label Text="Firstname: " />
+        <Entry Text="{Binding Contact.ZipCode}" />
+
+        <Label Text="Firstname: " />
+        <Entry Text="{Binding Contact.City}" />
+        
+        <Button Text="Save" Command="{Binding UpdateContactCommand}" Margin="0,10,0,0" />
+    </VerticalStackLayout>
+    
+</ContentPage>

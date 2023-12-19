@@ -1,6 +1,5 @@
 ﻿using MauiAddressBook.Pages;
 using MauiAddressBook.ViewModels;
-using Microsoft.Extensions.Logging;
 using Shared.Services;
 
 namespace MauiAddressBook
@@ -19,9 +18,14 @@ namespace MauiAddressBook
                 });
 
             builder.Services.AddSingleton<ContactAddPage>();
-            builder.Services.AddSingleton<ContactListPage>();
             builder.Services.AddSingleton<ContactAddViewModel>();
+
+            builder.Services.AddSingleton<ContactListPage>();
             builder.Services.AddSingleton<ContactListViewModel>();
+
+            builder.Services.AddSingleton<ContactEditPage>();
+            builder.Services.AddSingleton<ContactEditViewModel>();
+
             builder.Services.AddSingleton<ContactService>();
             builder.Services.AddSingleton<FileService>();
 

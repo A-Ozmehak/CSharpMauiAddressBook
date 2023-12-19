@@ -28,7 +28,7 @@ namespace MauiAddressBook.ViewModels
         private ObservableCollection<AddressBookContact> _contactList = [];
 
         [RelayCommand]
-        private void AddContact()
+        private async Task AddContact()
         {
             if (AddContactForm != null && !string.IsNullOrWhiteSpace(AddContactForm.FirstName))
             {
@@ -36,6 +36,7 @@ namespace MauiAddressBook.ViewModels
                 if (result)
                 {
                     AddContactForm = new();
+                    await Shell.Current.GoToAsync("..");
                 }
             }
         }
@@ -59,10 +60,10 @@ namespace MauiAddressBook.ViewModels
         }
 
 
-        [RelayCommand]
-        private async Task NavigateToList()
-        {
-            await Shell.Current.GoToAsync("ContactListPage");
-        }
+        //[RelayCommand]
+        //private async Task NavigateToList()
+        //{
+        //    await Shell.Current.GoToAsync("ContactListPage");
+        //}
     }
 }

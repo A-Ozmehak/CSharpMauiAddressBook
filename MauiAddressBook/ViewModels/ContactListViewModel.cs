@@ -3,20 +3,24 @@ using CommunityToolkit.Mvvm.Input;
 using Shared.Models;
 using Shared.Services;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace MauiAddressBook.ViewModels;
 
 public partial class ContactListViewModel : ObservableObject
 {
     private readonly ContactService _contactService;
+
     [ObservableProperty]
-    private ObservableCollection<AddressBookContact> _contactList = [];
+    private ObservableCollection<AddressBookContact> contactList = [];
 
     public ContactListViewModel(ContactService contactService)
     {
         _contactService = contactService;
-        UpdateContactList();
+        _contactService.ContactUpdated += (sender, e) =>
+        {
+            ContactList = new ObservableCollection<AddressBookContact>(_contactService.GetContacts());
+        };
+        //UpdateContactList();
     }
 
     public void UpdateContactList()
@@ -24,35 +28,27 @@ public partial class ContactListViewModel : ObservableObject
         ContactList = new ObservableCollection<AddressBookContact>(_contactService.Contacts.Select(contact => contact).ToList());
     }
 
+    [RelayCommand]
+    private void RemoveContact(AddressBookContact contact)
+    {
+        _contactService.RemoveCustomerFromList(contact.Email);
 
-    //protected override void OnAppearing()
-    //{
-    //    base.OnAppearing();
-    //    LoadContacts();
-    //}
+    }
 
-    //private void LoadContacts()
-    //{
-    //    try
-    //    {
-    //        var contacts = _contactService.GetContacts();
-    //        ContactsCollectionView.ItemsSource = contacts;
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        Debug.WriteLine(ex.Message);
-    //        // Show an error message to the user
-    //    }
-    //}
+    [RelayCommand]
+    private async Task NavigateToEdit(AddressBookContact contact)
+    {
+        var parameters = new ShellNavigationQueryParameters
+        {
+            {"Contact", contact }
+        };
 
-    //public string GetSingleContactFromList()
-    //{
+        await Shell.Current.GoToAsync("ContactEditPage", parameters);
+    }
 
-    //}
-
-    //[RelayCommand]
-    //private async Task NavigateToAddContact()
-    //{
-    //    await Shell.Current.GoToAsync("ContactAddPage");
-    //}
+    [RelayCommand]
+    private async Task NavigateToAdd(AddressBookContact contact)
+    {
+        await Shell.Current.GoToAsync("ContactAddPage");
+    }
 }
