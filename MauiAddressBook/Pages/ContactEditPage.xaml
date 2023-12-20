@@ -15,22 +15,22 @@
                 <Label Text="Firstname: " Margin="5,0,0,5" />
                 <Entry Text="{Binding Contact.FirstName}" Margin="0,0,0,10" />
 
-                <Label Text="Firstname: " Margin="5,10,0,5" />
+                <Label Text="Lastname: " Margin="5,10,0,5" />
                 <Entry Text="{Binding Contact.LastName}" Margin="0,0,0,10" />
 
-                <Label Text="Firstname: " Margin="5,10,0,5" />
+                <Label Text="Email: " Margin="5,10,0,5" />
                 <Entry Text="{Binding Contact.Email}" Margin="0,0,0,10" />
 
-                <Label Text="Firstname: " Margin="5,10,0,5" />
+                <Label Text="Phonenumber: " Margin="5,10,0,5" />
                 <Entry Text="{Binding Contact.PhoneNumber}" Margin="0,0,0,10" />
 
-                <Label Text="Firstname: " Margin="5,10,0,5" />
+                <Label Text="Address: " Margin="5,10,0,5" />
                 <Entry Text="{Binding Contact.Address}" Margin="0,0,0,10" />
 
-                <Label Text="Firstname: " Margin="5,10,0,5" />
+                <Label Text="Zipcode: " Margin="5,10,0,5" />
                 <Entry Text="{Binding Contact.ZipCode}" Margin="0,0,0,10" />
 
-                <Label Text="Firstname: " Margin="5,10,0,5" />
+                <Label Text="City: " Margin="5,10,0,5" />
                 <Entry Text="{Binding Contact.City}" />
 
                 <Button Text="Save" Command="{Binding UpdateContactCommand}" Margin="0,20,0,0" />

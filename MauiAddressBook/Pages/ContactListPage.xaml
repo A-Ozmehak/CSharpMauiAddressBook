@@ -12,26 +12,63 @@
     <ScrollView>
 
         <Grid RowDefinitions="auto, *" Margin="20">
-            <Button Grid.Row="0" Text="Add Contact" Command="{Binding NavigateToAddCommand}" Margin="0,0,0,20" />
-            <CollectionView Grid.Row="1" ItemsSource="{Binding ContactList}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:AddressBookContact">
-                        <Grid ColumnDefinitions="*, auto">
-                            <VerticalStackLayout Grid.Column="0" Margin="10">
-                                <Label Text="{Binding FullName, StringFormat='Name: {0}'}" />
-                                <Label Text="{Binding Email, StringFormat='Email: {0}'}" />
-                                <Label Text="{Binding PhoneNumber, StringFormat='Phone number: {0}'}" />
-                                <Label Text="{Binding FullAddress, StringFormat='Address: {0}'}" />
-                            </VerticalStackLayout>
 
-                            <HorizontalStackLayout Grid.Column="1">
-                                <Button Text="Remove" CommandParameter="{Binding .}" Command="{Binding Path=BindingContext.RemoveContactFromListCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"  Margin="10" BackgroundColor="#B80F0A" TextColor="#FFFFFF" />
-                                <Button Text="Edit" CommandParameter="{Binding .}" Command="{Binding Path=BindingContext.NavigateToEditCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"  Margin="10" />
-                            </HorizontalStackLayout>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+
+            <VerticalStackLayout Grid.Row="0" HorizontalOptions="Center">
+                <Grid ColumnDefinitions="auto, auto" ColumnSpacing="20">
+                    <Button Grid.Column="0" Text="Add Contact" Command="{Binding NavigateToAddCommand}" Margin="0,0,0,20" />
+                    <HorizontalStackLayout Grid.Column="1">
+                        <Entry x:Name="FirstNameEntry" Placeholder="Enter first name" />
+                        <Button Text="Search" Clicked="SearchButton_Clicked" />
+                    </HorizontalStackLayout>
+                </Grid>
+                <CollectionView x:Name="ContactListView" ItemsSource="{Binding ContactList}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:AddressBookContact">
+                            <Grid ColumnDefinitions="*, auto">
+                                <VerticalStackLayout Grid.Column="0" Margin="10">
+                                    <Label Text="{Binding FullName, StringFormat='Name: {0}'}" />
+                                    <Label Text="{Binding Email, StringFormat='Email: {0}'}" />
+                                    <Label Text="{Binding PhoneNumber, StringFormat='Phone number: {0}'}" />
+                                    <Label Text="{Binding FullAddress, StringFormat='Address: {0}'}" />
+                                </VerticalStackLayout>
+
+                                <HorizontalStackLayout Grid.Column="1" VerticalOptions="End">
+                                    <Button Text="Remove" CommandParameter="{Binding .}" Command="{Binding Path=BindingContext.RemoveContactFromListCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"  Margin="10" BackgroundColor="#B80F0A" TextColor="#FFFFFF" />
+                                    <Button Text="Edit" CommandParameter="{Binding .}" Command="{Binding Path=BindingContext.NavigateToEditCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"  Margin="10" />
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+            <HorizontalStackLayout Grid.Row="1" Margin="20">
+                <Grid RowDefinitions="auto, *">
+                    <Label Grid.Row="0" Text="All Contacts" FontAttributes="Bold" FontSize="20" Margin="10,0,0,0" />
+                    <CollectionView Grid.Row="1" ItemsSource="{Binding ContactList}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:AddressBookContact">
+                                <Grid ColumnDefinitions="*, auto">
+                                    <VerticalStackLayout Grid.Column="0" Margin="10">
+                                        <Label Text="{Binding FullName, StringFormat='Name: {0}'}" />
+                                        <Label Text="{Binding Email, StringFormat='Email: {0}'}" />
+                                        <Label Text="{Binding PhoneNumber, StringFormat='Phone number: {0}'}" />
+                                        <Label Text="{Binding FullAddress, StringFormat='Address: {0}'}" />
+                                    </VerticalStackLayout>
+
+                                    <HorizontalStackLayout Grid.Column="1" VerticalOptions="End">
+                                        <Button Text="Remove" CommandParameter="{Binding .}" Command="{Binding Path=BindingContext.RemoveContactFromListCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"  Margin="10" BackgroundColor="#B80F0A" TextColor="#FFFFFF" />
+                                        <Button Text="Edit" CommandParameter="{Binding .}" Command="{Binding Path=BindingContext.NavigateToEditCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"  Margin="10" />
+                                    </HorizontalStackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </HorizontalStackLayout>
+
+
         </Grid>
 
     </ScrollView>

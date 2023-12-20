@@ -31,7 +31,7 @@ public partial class ContactListViewModel : ObservableObject
     {
         if (contact != null)
         {
-            _contactService.RemoveCustomerFromList(contact.Email);
+            _contactService.RemoveContactFromList(contact.Email);
         }
     }
 
@@ -73,4 +73,16 @@ public partial class ContactListViewModel : ObservableObject
         }
         await Task.CompletedTask;
     }
+
+    /// <summary>
+    /// Finds the contacts in the list that matches the firstname the user writes in a entry.
+    /// </summary>
+    /// <param name="firstName">The first name to search for.</param>
+    /// <returns>A list of contacts that match the provided first name.</returns>
+    public List<AddressBookContact> FindContactsByFirstName(string firstName)
+    {
+        return ContactList.Where(contact => contact.FirstName.Equals(firstName, StringComparison.OrdinalIgnoreCase)).ToList();
+    }
+
+ 
 }

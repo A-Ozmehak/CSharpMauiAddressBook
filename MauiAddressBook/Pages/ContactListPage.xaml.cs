@@ -18,4 +18,12 @@ public partial class ContactListPage : ContentPage
 
         await _viewModel.LoadContacts();
     }
+
+    private void SearchButton_Clicked(object sender, EventArgs e)
+    {
+        string firstName = FirstNameEntry.Text;
+        var matchingContacts = _viewModel.FindContactsByFirstName(firstName);
+
+        ContactListView.ItemsSource = matchingContacts;
+    }
 }

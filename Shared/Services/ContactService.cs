@@ -50,7 +50,7 @@ public class ContactService
         return null!;
     }
 
-    public bool RemoveCustomerFromList(string email)
+    public bool RemoveContactFromList(string email)
     {
         try
         {
