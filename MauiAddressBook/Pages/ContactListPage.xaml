@@ -12,7 +12,7 @@
     <ScrollView>
 
         <Grid RowDefinitions="auto, *" Margin="20">
-            <Button Grid.Row="0" Text="Add Contact" Command="{Binding NavigateToAddCommand}" />
+            <Button Grid.Row="0" Text="Add Contact" Command="{Binding NavigateToAddCommand}" Margin="0,0,0,20" />
             <CollectionView Grid.Row="1" ItemsSource="{Binding ContactList}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:AddressBookContact">
@@ -25,7 +25,7 @@
                             </VerticalStackLayout>
 
                             <HorizontalStackLayout Grid.Column="1">
-                                <Button Text="X" CommandParameter="{Binding .}" Command="{Binding Path=BindingContext.RemoveContactCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"  Margin="10" />
+                                <Button Text="Remove" CommandParameter="{Binding .}" Command="{Binding Path=BindingContext.RemoveContactCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"  Margin="10" BackgroundColor="#B80F0A" TextColor="#FFFFFF" />
                                 <Button Text="Edit" CommandParameter="{Binding .}" Command="{Binding Path=BindingContext.NavigateToEditCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"  Margin="10" />
                             </HorizontalStackLayout>
                         </Grid>

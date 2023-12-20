@@ -12,33 +12,29 @@
     <ScrollView>
         <Grid RowDefinitions="auto, *" Margin="20">
             <VerticalStackLayout Grid.Row="0">
-                <Label 
-                    Text="Add Contact"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center" />
 
-                <Label Text="First name" />
-                <Entry Text="{Binding AddContactForm.FirstName}" />
+                <Label Text="First name" Margin="5,0,0,5" />
+                <Entry Text="{Binding AddContactForm.FirstName}" Margin="0,0,0,15" />
 
-                <Label Text="Last name" />
-                <Entry Text="{Binding AddContactForm.LastName}" />
+                <Label Text="Last name" Margin="5,0,0,5" />
+                <Entry Text="{Binding AddContactForm.LastName}" Margin="0,0,0,15" />
 
-                <Label Text="Email" />
-                <Entry Text="{Binding AddContactForm.Email}" />
+                <Label Text="Email" Margin="5,0,0,5" />
+                <Entry Text="{Binding AddContactForm.Email}" Margin="0,0,0,15" />
 
-                <Label Text="Phone number" />
-                <Entry Text="{Binding AddContactForm.PhoneNumber}" />
+                <Label Text="Phone number" Margin="5,0,0,5" />
+                <Entry Text="{Binding AddContactForm.PhoneNumber}" Margin="0,0,0,15" />
 
-                <Label Text="Address" />
-                <Entry Text="{Binding AddContactForm.Address}" />
+                <Label Text="Address" Margin="5,0,0,5" />
+                <Entry Text="{Binding AddContactForm.Address}" Margin="0,0,0,15" />
 
-                <Label Text="Zipcode" />
-                <Entry Text="{Binding AddContactForm.ZipCode}" />
+                <Label Text="Zipcode" Margin="5,0,0,5" />
+                <Entry Text="{Binding AddContactForm.ZipCode}" Margin="0,0,0,15" />
 
-                <Label Text="City" />
+                <Label Text="City" Margin="5,0,0,5" />
                 <Entry Text="{Binding AddContactForm.City}" />
 
-                <Button Text="Add to List" Command="{Binding AddContactCommand}" />
+                <Button Text="Add to List" Command="{Binding AddContactCommand}" Margin="0,20,0,0" BackgroundColor="#028A0F" />
 
                 <!--<Button Text="Contact List" Command="{Binding NavigateToListCommand}" />-->
             </VerticalStackLayout>
