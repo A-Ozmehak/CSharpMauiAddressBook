@@ -51,4 +51,16 @@ public partial class ContactListViewModel : ObservableObject
     {
         await Shell.Current.GoToAsync("ContactAddPage");
     }
+
+    //[RelayCommand]
+    public async Task LoadContacts()
+    {
+        var contacts = _contactService.GetContacts();
+        ContactList.Clear();
+        foreach (var contact in contacts)
+        {
+            ContactList.Add(contact);
+        }
+        await Task.CompletedTask;
+    }
 }
