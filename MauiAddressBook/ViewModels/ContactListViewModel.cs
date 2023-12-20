@@ -20,21 +20,25 @@ public partial class ContactListViewModel : ObservableObject
         {
             ContactList = new ObservableCollection<AddressBookContact>(_contactService.GetContacts());
         };
-        //UpdateContactList();
     }
 
-    public void UpdateContactList()
-    {
-        ContactList = new ObservableCollection<AddressBookContact>(_contactService.Contacts.Select(contact => contact).ToList());
-    }
-
+    /// <summary>
+    /// Removes a contact from the list 
+    /// </summary>
+    /// <param name="contact">The contact to remove</param>
     [RelayCommand]
-    private void RemoveContact(AddressBookContact contact)
+    public void RemoveContactFromList(AddressBookContact contact)
     {
-        _contactService.RemoveCustomerFromList(contact.Email);
-
+        if (contact != null)
+        {
+            _contactService.RemoveCustomerFromList(contact.Email);
+        }
     }
 
+    /// <summary>
+    /// Navigates to ContactEditPage
+    /// </summary>
+    /// <param name="contact">The contact that was edited</param>
     [RelayCommand]
     private async Task NavigateToEdit(AddressBookContact contact)
     {
@@ -46,13 +50,19 @@ public partial class ContactListViewModel : ObservableObject
         await Shell.Current.GoToAsync("ContactEditPage", parameters);
     }
 
+    /// <summary>
+    /// Navigates to ContactAddPage
+    /// </summary>
     [RelayCommand]
-    private async Task NavigateToAdd(AddressBookContact contact)
+    private async Task NavigateToAdd()
     {
         await Shell.Current.GoToAsync("ContactAddPage");
     }
 
-    //[RelayCommand]
+    /// <summary>
+    /// Load all contacts
+    /// </summary>
+    [RelayCommand]
     public async Task LoadContacts()
     {
         var contacts = _contactService.GetContacts();

@@ -13,7 +13,6 @@ namespace MauiAddressBook.ViewModels
         public ContactAddViewModel(ContactService contactService)
         {
             _contactService = contactService;
-            UpdateContactList();
 
             foreach (AddressBookContact contact in _contactService.GetContacts())
             {
@@ -27,10 +26,13 @@ namespace MauiAddressBook.ViewModels
         [ObservableProperty]
         private ObservableCollection<AddressBookContact> _contactList = [];
 
+        /// <summary>
+        /// Asynchronously adds a new contact to the contact list if the contact form is valid.
+        /// </summary>
         [RelayCommand]
         private async Task AddContact()
         {
-            if (AddContactForm != null && !string.IsNullOrWhiteSpace(AddContactForm.FirstName))
+            if (AddContactForm != null && !string.IsNullOrWhiteSpace(AddContactForm.FirstName) && !string.IsNullOrWhiteSpace(AddContactForm.LastName))
             {
                 var result = _contactService.AddContactToList(AddContactForm);
                 if (result)
@@ -40,30 +42,5 @@ namespace MauiAddressBook.ViewModels
                 }
             }
         }
-
-        [RelayCommand]
-        public void RemoveContactFromList(AddressBookContact contact)
-        {
-            if (contact != null)
-            {
-                var result = _contactService.RemoveCustomerFromList(contact.Email);
-                if (result)
-                {
-                    UpdateContactList();
-                }
-            }
-        }
-
-        public void UpdateContactList()
-        {
-            ContactList = new ObservableCollection<AddressBookContact>(_contactService.Contacts.Select(contact => contact).ToList());
-        }
-
-
-        //[RelayCommand]
-        //private async Task NavigateToList()
-        //{
-        //    await Shell.Current.GoToAsync("ContactListPage");
-        //}
     }
 }

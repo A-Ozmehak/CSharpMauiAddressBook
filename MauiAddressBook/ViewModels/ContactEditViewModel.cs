@@ -17,6 +17,9 @@ public partial class ContactEditViewModel : ObservableObject, IQueryAttributable
     [ObservableProperty]
     private AddressBookContact contact = new();
 
+    /// <summary>
+    /// Updates the contact information and redirects to ContactListPage
+    /// </summary>
     [RelayCommand]
     private async Task UpdateContact()
     {

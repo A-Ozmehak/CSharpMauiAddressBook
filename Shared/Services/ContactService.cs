@@ -21,26 +21,15 @@ public class ContactService
 
     public bool AddContactToList(AddressBookContact contact)
     {
-        //if (!string.IsNullOrWhiteSpace(contact.FirstName))
-        //{
-        //    Contacts.Add(contact);
-        //    return true;
-        //}
-        //return false;
-
         try
         {
-            //if (!_contacts.Any(name => name.FirstName == contact.FirstName))
-            //{
             Contacts.Add(contact);
 
             string json = JsonConvert.SerializeObject(Contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
-            //var result = 
             _fileService.SaveContactToFile(_filePath, json);
             ContactUpdated?.Invoke(this, new EventArgs());
 
             return true;
-            //}
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
         return false;
@@ -63,17 +52,6 @@ public class ContactService
 
     public bool RemoveCustomerFromList(string email)
     {
-        //if (!string.IsNullOrWhiteSpace(contact.FirstName))
-        //{
-        //    var exisitingCustomer = Contacts.FirstOrDefault(x => x.FirstName == contact.FirstName);
-        //    if (exisitingCustomer != null)
-        //    {
-        //        Contacts.Remove(exisitingCustomer);
-        //        return true;
-        //    }
-        //}
-        //return false;
-
         try
         {
             var contactToRemove = Contacts.FirstOrDefault(c => c.Email == email);

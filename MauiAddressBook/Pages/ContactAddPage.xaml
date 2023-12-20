@@ -35,8 +35,6 @@
                 <Entry Text="{Binding AddContactForm.City}" />
 
                 <Button Text="Add to List" Command="{Binding AddContactCommand}" Margin="0,20,0,0" BackgroundColor="#028A0F" />
-
-                <!--<Button Text="Contact List" Command="{Binding NavigateToListCommand}" />-->
             </VerticalStackLayout>
         </Grid>
     </ScrollView>
