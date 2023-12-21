@@ -79,10 +79,23 @@ public partial class ContactListViewModel : ObservableObject
     /// </summary>
     /// <param name="firstName">The first name to search for.</param>
     /// <returns>A list of contacts that match the provided first name.</returns>
-    public List<AddressBookContact> FindContactsByFirstName(string firstName)
+    public IEnumerable<AddressBookContact> FindContactsByFirstName(string firstName)
     {
-        return ContactList.Where(contact => contact.FirstName.Equals(firstName, StringComparison.OrdinalIgnoreCase)).ToList();
+        return ContactList.Where(contact => contact.FirstName.StartsWith(firstName, StringComparison.OrdinalIgnoreCase));
     }
 
- 
+    public void UpdateContactList(string firstName)
+    {
+        if (string.IsNullOrEmpty(firstName))
+        {
+            // If the search box is empty, show all contacts
+            ContactList = new ObservableCollection<AddressBookContact>(_contactService.GetContacts());
+        }
+        else
+        {
+            var matchingContacts = FindContactsByFirstName(firstName);
+            // Update the CollectionView's ItemsSource
+            ContactList = new ObservableCollection<AddressBookContact>(matchingContacts);
+        }
+    }
 }

@@ -6,11 +6,14 @@ public partial class ContactListPage : ContentPage
 {
     private readonly ContactListViewModel _viewModel;
     public ContactListPage(ContactListViewModel viewModel)
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         _viewModel = viewModel;
         BindingContext = _viewModel;
-	}
+
+
+        FirstNameEntry.TextChanged += FirstNameEntry_TextChanged;
+    }
 
     protected override async void OnAppearing()
     {
@@ -19,11 +22,11 @@ public partial class ContactListPage : ContentPage
         await _viewModel.LoadContacts();
     }
 
-    private void SearchButton_Clicked(object sender, EventArgs e)
+    private void FirstNameEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
-        string firstName = FirstNameEntry.Text;
-        var matchingContacts = _viewModel.FindContactsByFirstName(firstName);
-
-        ContactListView.ItemsSource = matchingContacts;
+        string firstName = e.NewTextValue;
+        _viewModel.UpdateContactList(firstName);
     }
+
+
 }
