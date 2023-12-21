@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiAddressBook", "MauiAddressBook\MauiAddressBook.csproj", "{26D61817-0CC3-4659-B5B0-0F5763695176}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiAddressBook", "MauiAddressBook\MauiAddressBook.csproj", "{26D61817-0CC3-4659-B5B0-0F5763695176}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{908B7367-8A11-408F-A41F-ABCAD01F339C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{908B7367-8A11-408F-A41F-ABCAD01F339C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiAddressBook_Tests", "MauiAddressBook_Tests\MauiAddressBook_Tests.csproj", "{F6BAE94F-7859-4D61-93D5-23C0B9249877}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{908B7367-8A11-408F-A41F-ABCAD01F339C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{908B7367-8A11-408F-A41F-ABCAD01F339C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{908B7367-8A11-408F-A41F-ABCAD01F339C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6BAE94F-7859-4D61-93D5-23C0B9249877}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6BAE94F-7859-4D61-93D5-23C0B9249877}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6BAE94F-7859-4D61-93D5-23C0B9249877}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6BAE94F-7859-4D61-93D5-23C0B9249877}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

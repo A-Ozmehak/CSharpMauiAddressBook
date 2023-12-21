@@ -75,19 +75,6 @@ public class ContactService
         return false;
     }
 
-    public AddressBookContact GetSingleContact(string firstName)
-    {
-        try
-        {
-            GetContacts();
-
-            var contact = Contacts.FirstOrDefault(x => x.FirstName == firstName);
-            return contact ??= null!;
-        }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
-        return null!;
-    }
-
     public void Update(AddressBookContact contact)
     {
         var addressBookItem = Contacts.FirstOrDefault(i => i.FullName == contact.FullName);
